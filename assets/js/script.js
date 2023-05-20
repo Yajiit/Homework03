@@ -1,17 +1,24 @@
+// Ensures variables have functional scope for reroll
 let includeLower;
 let includeUpper;
 let includeNumber;
 let includeSpecial;
 let length;
+let resetlength;
+
 function generatePassword() {
 // Ensures the alphanumeric sidestep prompt works properly on repeat generations
   let includeAlphaNum = false;
+  // Check if function is generating fresh password or rerolling with previously used criteria
+  if (generateBtn.dataset.fresh === "true"){
   // Promt for password length
     length = parseInt(prompt("Enter desired password length (between 8 and 128):"));
 //  Re-prompt for invalid inputs
     while (isNaN(length) || length < 8 || length > 128) {
     length = parseInt(prompt("Ivalid- Please enter a length between 8 and 128:"));
   }
+  // Holds the specified length in a separate variable for safe keeping
+  resetlength = length;
     // Prompt to add all alphanumeric with single ok
     includeAlphaNum = confirm("Include all alphanumeric characters?")
     if (includeAlphaNum) {
@@ -26,6 +33,12 @@ function generatePassword() {
     }
   // Prompt for special characters
      includeSpecial = confirm("Include special characters?");
+  // Set boolean for rerolling password later
+     generateBtn.dataset.fresh = "false";
+  } else {
+    // Copies length value of previously generated password
+    length = resetlength;
+  }
   // Defining available characters
    const lowercase = "abcdefghijklmnopqrstuvwxyz";
    const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -76,8 +89,14 @@ function shuffler(string){
 // Button to generate
 const generateBtn = document.getElementById("generateBtn");
 generateBtn.addEventListener("click", function() {
-const password = generatePassword();
+  generateBtn.dataset.fresh = "true";
+  const password = generatePassword();
 
 // Displays the generated password
-document.getElementById("password").textContent = password;
+  document.getElementById("password").textContent = password;
 })
+// Button the reroll
+recreateBtn.addEventListener("click", function(){
+  const password = generatePassword();
+  document.getElementById("password").textContent = password;
+});
