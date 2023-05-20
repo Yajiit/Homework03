@@ -76,9 +76,6 @@ function generatePassword() {
   // Sends generated characters into shuffler function
    password = shuffler(password);
     return password;
-
-    
-
 }
   // Function to shuffle the password to prevent the first four character types from being predictable
 function shuffler(string){
