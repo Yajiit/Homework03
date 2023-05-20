@@ -7,7 +7,7 @@ This project was designed to randomly generate a password with specificed criter
 
 ## USAGE
 
-[Link to Generator Page](.index.html)
+[Link to Generator Page](index.html)
 To use the generator click the "Generate Password" button to begin. It will prompt you to enter the length of the password. (Note: the prompt will repeat if the length is not between 8 and 128, or if the input is otherwise invalid) Next you will be prompted to add ALL Alphanumeric characters to the available character set; if no is selected, then individual prompts for lowercase, uppercase, and numeric will be shown.  Next it will ask for special characters to added.  After that it should display a randomly generated password based on the answers to the prompts. If you would like to quickly reroll the password with the same length and character set click the "Recreate Password" button. To change the criteria simply click "Generate Password" again.
 
 
