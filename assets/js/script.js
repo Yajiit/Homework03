@@ -1,8 +1,8 @@
 let includeLower;
-
+let includeUpper;
 function generatePassword() {
 // Promt for password length
-  if (generateBtn.dataset.fresh === "true"){
+  
     length = parseInt(prompt("Enter desired password length (between 8 and 128):"));
 //  Re-prompt for invalid inputs
     while (isNaN(length) || length < 8 || length > 128) {
@@ -10,7 +10,6 @@ function generatePassword() {
   }
   // Prompt for which characters to include
      includeLower = confirm("Include lowercase characters?");
-  }
   
   // Defining available characters
   const lowercase = "abcdefghijklmnopqrstuvwxyz";
