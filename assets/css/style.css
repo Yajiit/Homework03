@@ -135,3 +135,9 @@ button[disabled] {
     font-size: 0.8rem;
   }
 }
+
+/* Reroll button begins greyed out */
+#recreateBtn {
+  opacity: 0.3;
+  cursor: not-allowed;
+}

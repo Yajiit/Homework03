@@ -5,7 +5,7 @@ let includeNumber;
 let includeSpecial;
 let length;
 let resetlength;
-
+// Primary function for password generation
 function generatePassword() {
 // Ensures the alphanumeric sidestep prompt works properly on repeat generations
   let includeAlphaNum = false;
@@ -29,7 +29,7 @@ function generatePassword() {
   // Separate prompts for which characters to include
      includeLower = confirm("Include lowercase letters?");
      includeUpper = confirm("Include uppercase letters?");
-     includeNumber = confirm("Include numeric characters?");
+     includeNumber = confirm("Include numbers?");
     }
   // Prompt for special characters
      includeSpecial = confirm("Include special characters?");
@@ -48,7 +48,7 @@ function generatePassword() {
    let password = "";
    let charSet = "";
 
-  // Adding the available characters to password
+  // Adds the available characters to character set, an ensures at least one character of that type is included in the password
    if (includeLower) {
      charSet += lowercase;
      password += lowercase.charAt(Math.floor(Math.random() * lowercase.length));
@@ -69,13 +69,16 @@ function generatePassword() {
     password += specialChars.charAt(Math.floor(Math.random() * specialChars.length));
     length--;
   }
-  // Filling the password with available characters
+  // Fills the password with available characters
    for (let i = 0; i < length; i++) {
      password += charSet.charAt(Math.floor(Math.random() * charSet.length));
   }
   // Sends generated characters into shuffler function
    password = shuffler(password);
     return password;
+
+    
+
 }
   // Function to shuffle the password to prevent the first four character types from being predictable
 function shuffler(string){
@@ -91,11 +94,14 @@ const generateBtn = document.getElementById("generateBtn");
 generateBtn.addEventListener("click", function() {
   generateBtn.dataset.fresh = "true";
   const password = generatePassword();
-
+  // ungreys the reroll button
+  recreateBtn.style.opacity = "1.0";
+  recreateBtn.style.cursor = "auto";
 // Displays the generated password
   document.getElementById("password").textContent = password;
 })
-// Button the reroll
+// Button to reroll
+const recreateBtn = document.getElementById("recreateBtn");
 recreateBtn.addEventListener("click", function(){
   const password = generatePassword();
   document.getElementById("password").textContent = password;
